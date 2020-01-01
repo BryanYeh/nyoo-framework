@@ -13,7 +13,7 @@ class Request
     public function __construct()
     {
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
-        $this->path = trim(strtolower($_SERVER['PATH_INFO'] ?? ''), '/');
+        $this->path = trim($_SERVER['PATH_INFO'] ?? '', '/');
         $this->query = strtolower($_SERVER['QUERY_STRING']);
     }
 
