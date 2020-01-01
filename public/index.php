@@ -45,6 +45,14 @@ function exceptionHandler($exception, $inspector, $run) {
 $whoops = new Run();
 if(ENVIRONMENT == 'development'){
     $handler = new PrettyPageHandler();
+    $handler->blacklist('_ENV','DB_USER');
+    $handler->blacklist('_ENV','DB_PASSWORD');
+    $handler->blacklist('_ENV','DB_HOST');
+    $handler->blacklist('_ENV','DB_DATABASE');
+    $handler->blacklist('_SERVER','DB_USER');
+    $handler->blacklist('_SERVER','DB_PASSWORD');
+    $handler->blacklist('_SERVER','DB_HOST');
+    $handler->blacklist('_SERVER','DB_DATABASE');
     $whoops->pushHandler($handler);
 
     $whoops->pushHandler(function ($exception, $inspector, $run) {
