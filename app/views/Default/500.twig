@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Server Error - {{ SITE_TITLE }}</title>
+
+    <style>
+        body{background-color:#00A;font-family: "Lucida Console";}
+        html, body, .container {height: 100%;}
+
+        .container {
+            display: -webkit-flexbox;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            justify-content: center;
+        }
+        .info{color: #fff;}
+        .file-error{background-color:#000; padding: 1px 100px;margin-left: 10px;}
+        .error-type{font-size: large;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info">
+            <p>
+                A problem has been detected and the webpage has been shutdown to
+                prevent damage to your eyes and brains.
+            </p>
+            <p>
+                The problem seems to be caused by the following file: <span class="file-error"></span>
+            </p>
+            <p class="error-type">
+                500 INTERNAL SERVER ERROR
+            </p>
+            <p>
+                Technical Information:
+            </p>
+            <p>
+                *** Nothing to see here
+            </p>            
+        </div>
+    </div>
+</body>
+</html>

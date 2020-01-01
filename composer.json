@@ -1,0 +1,12 @@
+{
+    "name": "bryanyeh/framework",
+    "description": "Just a simple PHP framework",
+    "license": "MIT",
+    "require": {
+        "twig/twig": "^2.11",
+        "vlucas/phpdotenv": "^3.6",
+        "monolog/monolog": "^2.0",
+        "filp/whoops": "^2.5",
+        "symfony/var-dumper": "^5.0"
+    }
+}
