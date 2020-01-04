@@ -89,14 +89,14 @@ class Router
                 $dispatch = new $controller($controller, $controller_function);
             }
             else{
-                throw new RouterException("Controller {$controller} not found");
+                throw new \Exception("Controller {$controller} not found");
             }
 
             if(method_exists($controller,$controller_function)){
                 call_user_func([$dispatch,$controller_function],$this->request);
             }
             else{
-                throw new RouterException("function {$controller_function} does not exits in {$controller}.php");
+                throw new \Exception("function {$controller_function} does not exits in {$controller}.php");
             }
             
         }

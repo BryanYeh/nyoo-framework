@@ -4,7 +4,6 @@ use Dotenv\Dotenv;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Formatter\LineFormatter;
-use App\Core\Error;
 use Whoops\Run;
 use Whoops\Handler\PrettyPageHandler;
 use App\Core\View;
@@ -44,15 +43,13 @@ function exceptionHandler($exception, $inspector, $run) {
 // Error handling with Whoops and Monolog
 $whoops = new Run();
 if(ENVIRONMENT == 'development'){
+    include_once (ROOT . DS . 'app' . DS . 'config' . DS . 'whoops-blacklist.php');
     $handler = new PrettyPageHandler();
-    $handler->blacklist('_ENV','DB_USER');
-    $handler->blacklist('_ENV','DB_PASSWORD');
-    $handler->blacklist('_ENV','DB_HOST');
-    $handler->blacklist('_ENV','DB_DATABASE');
-    $handler->blacklist('_SERVER','DB_USER');
-    $handler->blacklist('_SERVER','DB_PASSWORD');
-    $handler->blacklist('_SERVER','DB_HOST');
-    $handler->blacklist('_SERVER','DB_DATABASE');
+    foreach($whoopsBlacklist as $ele)
+    {
+        $handler->blacklist('_ENV', $ele);
+        $handler->blacklist('_SERVER', $ele);
+    }
     $whoops->pushHandler($handler);
 
     $whoops->pushHandler(function ($exception, $inspector, $run) {
@@ -66,8 +63,6 @@ else{
     });
 }
 $whoops->register();
-
-
 
 // routes
 $routes = new Router();
