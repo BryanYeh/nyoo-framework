@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-class View{
+class Twig{
     private static $loader;
     private static $twig;
     private static $extension;

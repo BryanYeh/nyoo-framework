@@ -4,7 +4,7 @@ namespace App\Core;
 
 use App\Core\Request;
 use App\Exceptions\RouterException;
-use App\Core\View;
+use App\Core\Response;
 
 class Router
 {
@@ -102,8 +102,7 @@ class Router
             
         }
         else{
-            header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
-            View::view('404');
+            Response::show404();
         }
     }
 }
