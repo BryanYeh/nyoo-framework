@@ -9,11 +9,11 @@ use App\Core\View;
 class Router
 {
     private $routes;
-    private $request;
+    private $_request;
 
     public function __construct()
     {
-        $this->request = new Request();
+        $this->_request = new Request();
     }
 
     private function request($method, $route, $controller, $function)
@@ -44,9 +44,10 @@ class Router
 
     public function run()
     {
-        $method = $this->request->getMethod();
-        $url = $this->request->getPath();
-        $query = $this->request->getQuery();
+        
+        $method = $this->_request->getMethod();
+        $url = $this->_request->getPath();
+        $query = $this->_request->getQuery();
         $controller = null;
         $controller_function = null;
 
@@ -68,7 +69,7 @@ class Router
                         }
                         // if route part is a variable {var_name}, ignore or store it for later
                         elseif (preg_match('/{(.*?)}/', $route_array[$i], $match) === 1 && strlen($url_array[$i]) > 0) {
-                            $this->request->setParam($match[1],$url_array[$i]);
+                            $this->_request->setParam($match[1],$url_array[$i]);
                             $route_found = true;
                         }
                         else{
@@ -93,7 +94,7 @@ class Router
             }
 
             if(method_exists($controller,$controller_function)){
-                call_user_func([$dispatch,$controller_function],$this->request);
+                call_user_func([$dispatch,$controller_function],$this->_request);
             }
             else{
                 throw new \Exception("function {$controller_function} does not exits in {$controller}.php");
