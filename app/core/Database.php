@@ -87,7 +87,7 @@ class Database
 
     public function table($table)
     {
-        $this->table = getenv('DB_TABLE_PREFIX').$table;
+        $this->table = DB_TABLE_PREFIX . $table;
         
         return $this;
     }
